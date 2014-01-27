@@ -3,7 +3,10 @@
 (setq debug-on-error t)
 
 ;; Set up load path
-(add-to-list 'load-path user-emacs-directory)
+(setq my-lisp-dir
+      (expand-file-name "my-lisp" user-emacs-directory))
+(add-to-list 'load-path my-lisp-dir)
+
 
 ;; Do this early, to prevent horrible UI...
 (require 'appearance)
@@ -41,8 +44,8 @@
 (defun init--install-packages ()
   (packages-install
    '(anything
-     anything-config
-     anything-git
+;     anything-config
+;     anything-git
      cider
      cider-tracing
      clojure-mode

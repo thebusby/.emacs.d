@@ -14,7 +14,7 @@
       truncate-partial-width-windows nil)
 
 ;; Highlight current line
-(global-hl-line-mode 1)
+; (global-hl-line-mode 1)
 
 ;; Don't defer screen updates when performing operations
 (setq redisplay-dont-pause t)
