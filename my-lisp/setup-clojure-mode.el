@@ -35,8 +35,6 @@
 (add-hook 'nrepl-mode-hook 'paredit-mode)                                  ; Use paredit in *nrepl* buffer
 
 
-(require 'highlight-parentheses-mode)
-(require 'highlight-symbol-mode)
 (require 'cider)
 
 (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)                      ; Per the github README's recommendation
