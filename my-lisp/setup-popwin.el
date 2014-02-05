@@ -1,7 +1,9 @@
 ;; ------------------------------------------------------------
 ;; Popwin, so you don't have to permanently split buffers...
 (require 'popwin)
-;; (popwin-mode t)
+(popwin-mode t)
+;; (popwin-mode 1)
+
 (setq display-buffer-function 'popwin:display-buffer)
 
 (setq popwin:special-display-config
@@ -21,12 +23,17 @@
         (".*overtone.log" :regexp t :height 30)
         ("*gists*" :height 30)
         ("*sldb.*":regexp t :height 30)
-        ("*nrepl-error*" :height 30 :stick t)
-        ("*nrepl-error*" :height 30 :stick t)
+;;        ("*nrepl-error*" :height 30 :stick t)
+        ("*nrepl-error*" :noselect t)
         ("*nrepl-doc*" :height 30 :stick t)
         ("*nrepl-src*" :height 30 :stick t)
         ("*nrepl-result*" :height 30 :stick t)
         ("*nrepl-macroexpansion*" :height 30 :stick t)
+	("*cider-error*" :height 30 :stick t)
+	("*cider-doc*" :height 30 :stick t)
+	("*cider-src*" :height 30 :stick t)
+	("*cider-result*" :height 30 :stick t)
+	("*cider-macroexpansion*" :height 30 :stick t)
         ("*Kill Ring*" :height 30)
         ("*Compile-Log*" :height 30 :stick t)
         ("*git-gutter:diff*" :height 30 :stick t)))

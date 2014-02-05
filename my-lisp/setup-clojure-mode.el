@@ -29,10 +29,10 @@
 
 
 ;; Misc old NREPL commands
-(setq nrepl-popup-stacktraces-in-repl t)
-(setq nrepl-use-pretty-printing t) ; Use pretty printing for output by default
-(add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)          ; Enable eldoc - shows fn argument list in echo area
-(add-hook 'nrepl-mode-hook 'paredit-mode)                                  ; Use paredit in *nrepl* buffer
+; (setq nrepl-popup-stacktraces-in-repl t)
+; (setq nrepl-use-pretty-printing t) ; Use pretty printing for output by default
+; (add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)          ; Enable eldoc - shows fn argument list in echo area
+; (add-hook 'nrepl-mode-hook 'paredit-mode)                                  ; Use paredit in *nrepl* buffer
 
 
 (require 'cider)
@@ -43,8 +43,8 @@
 ;; (setq cider-repl-wrap-history t) ; To adjust the maximum number of items kept in the REPL history:
 ;; (setq cider-repl-history-size 1000) ; the default is 500 
 ;; (setq cider-repl-history-file "~/.emacs.d/cider_history.txt") ; To store the REPL history in a file:
-(setq cider-toggle-pretty-printing t) ; Use pretty printing for output by default
-
+;; (setq cider-toggle-pretty-printing t) ; Use pretty printing for output by default (Doesn't seem to work)
+(custom-set-variables '(cider-toggle-pretty-printing t)) ; Will this work?
 
 
 ;; (define-key cider-repl-mode-map (kbd "<home>") nil)
@@ -60,7 +60,7 @@
 ;; (setq nrepl-hide-special-buffers t)
 
 ;; Enable error buffer popping also in the REPL:
-; (setq cider-repl-popup-stacktraces t)
+(setq cider-repl-popup-stacktraces t)
 
 ;; Specify history file
 (setq cider-history-file "~/.emacs.d/nrepl-history")

@@ -6,7 +6,9 @@
 (setq my-lisp-dir
       (expand-file-name "my-lisp" user-emacs-directory))
 (add-to-list 'load-path my-lisp-dir)
-
+(setq my-lisp-dir
+      (expand-file-name "elisp" user-emacs-directory))
+(add-to-list 'load-path my-lisp-dir)
 
 ;; Do this early, to prevent horrible UI...
 (require 'appearance)
@@ -139,6 +141,9 @@
 				 (local-set-key "\C-c<"  'hs-hide-block)
 				 (local-set-key "\C-c>"  'hs-show-block)))
 
+;; ------------------------------------------------------------
+;; Enable find-on-github mode
+(require 'find-on-github)
 
 
 ;; ------------------------------------------------------------

@@ -93,4 +93,8 @@
 ;; that you can always see what's happening.
 ; (setq eval-expression-print-level nil) 
 
+;; Make Google's chrome my default browser
+(setq browse-url-browser-function 'browse-url-generic
+            browse-url-generic-program "google-chrome")
+
 (provide 'my-defaults)
