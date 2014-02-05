@@ -38,13 +38,14 @@
 (require 'cider)
 
 (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)                      ; Per the github README's recommendation
-(add-hook 'cider-mode-hook 'paredit-mode)                                  ; Use paredit in cider buffer
+
+
+(setq cider-repl-use-pretty-printing t)                                    ; Enable pretty printing in REPL by default
 ;; (setq cider-repl-print-length 100) ;; limit number of lines to print for a result...
 ;; (setq cider-repl-wrap-history t) ; To adjust the maximum number of items kept in the REPL history:
 ;; (setq cider-repl-history-size 1000) ; the default is 500 
 ;; (setq cider-repl-history-file "~/.emacs.d/cider_history.txt") ; To store the REPL history in a file:
-;; (setq cider-toggle-pretty-printing t) ; Use pretty printing for output by default (Doesn't seem to work)
-(custom-set-variables '(cider-toggle-pretty-printing t)) ; Will this work?
+
 
 
 ;; (define-key cider-repl-mode-map (kbd "<home>") nil)
@@ -71,7 +72,10 @@
 ;; Prevent the auto-display of the REPL buffer in a separate window after connection is established
 (setq cider-repl-pop-to-buffer-on-connect nil)
 
-
+;; Use C-g to kill the cider error buffer
+(add-hook 'cider-popup-buffer-mode-hook
+	  '(lambda ()
+	     (local-set-key "\C-g" 'cider-popup-buffer-quit)))
 
 ;; Cycle between () {} []
 
