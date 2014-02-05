@@ -1,6 +1,6 @@
 ;; -- --  -- --  -- --  -- --  -- --  -- --  -- --  -- --  -- -
 ;; In case you need to debug the config file...
-(setq debug-on-error t)
+; (setq debug-on-error t) ;; windmove complains :(
 
 ;; Set up load path
 (setq my-lisp-dir
