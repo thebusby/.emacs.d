@@ -16,6 +16,19 @@
 ;; Highlight current line
 ; (global-hl-line-mode 1)
 
+;; Make active windows have a light grey backgound
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(auto-dim-other-buffers-face ((t (:background "color-80")))))
+
+;; Make default background have a light grey background
+;; (custom-set-faces
+;;  '(default ((t (:background "color-80")))))
+
+
 ;; Don't defer screen updates when performing operations
 (setq redisplay-dont-pause t)
 

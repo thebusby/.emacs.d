@@ -61,6 +61,7 @@
      paredit
      popwin
      xclip
+     auto-dim-other-buffers
 ;     move-text
 ;     htmlize
 ;     visual-regexp
@@ -97,7 +98,10 @@
 (setq guide-key/recursive-key-sequence-flag t)
 (setq guide-key/popup-window-position 'bottom)
 
-
+;; Enable auto-dim-other-buffers-mode by default
+(add-hook 'after-init-hook (lambda ()
+			     (when (fboundp 'auto-dim-other-buffers-mode)
+			       (auto-dim-other-buffers-mode t))))
 
 ;; -- --  -- --  -- --  -- --  -- --  -- --  -- --  -- --  -- -
 ;; Setup extensions
@@ -154,7 +158,3 @@
 
 ;; Setup my key bindings
 (require 'key-bindings)
-
-
-
-

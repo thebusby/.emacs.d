@@ -14,4 +14,10 @@
 				   ;; (highlight-symbol-mode)
 				   ))
 
+(add-hook 'emacs-lisp-mode-hook '(lambda ()
+				   (paredit-mode 1)
+				   (highlight-parentheses-mode)
+				   ;; (highlight-symbol-mode)
+				   ))
+
 (provide 'setup-paredit)
