@@ -41,9 +41,9 @@
 
 
 (setq cider-repl-use-pretty-printing t)                                    ; Enable pretty printing in REPL by default
-;; (setq cider-repl-print-length 100) ;; limit number of lines to print for a result...
+(setq cider-repl-print-length 100) ;; limit number of lines to print for a result...
 ;; (setq cider-repl-wrap-history t) ; To adjust the maximum number of items kept in the REPL history:
-;; (setq cider-repl-history-size 1000) ; the default is 500 
+;; (setq cider-repl-history-size 1000) ; the default is 500
 ;; (setq cider-repl-history-file "~/.emacs.d/cider_history.txt") ; To store the REPL history in a file:
 
 
@@ -125,6 +125,33 @@
 ;; (define-key clojure-mode-map (kbd "C-c C-z") 'nrepl-warn-when-not-connected)
 ;; (define-key clojure-mode-map (kbd "C-c C-n") 'nrepl-warn-when-not-connected)
 
+
+(defun get-buffers-by-regex (regex)
+  "Return list of buffers who's name matched the provided regex"
+  (delq nil (mapcar (lambda (x) (if (string-match regex (buffer-name x))
+				    x))
+		    (buffer-list))))
+
+
+;; Execute cider-jack-in, and when it's complete make the REPL buffer the current buffer
+(defun my-cider-jack-in ()
+  (interactive)
+  (cider-jack-in)
+  (sleep-for 3)
+  (setq secs 3)
+  (while (< secs 30)
+    (let ((repl-buffer (car (get-buffers-by-regex "^*cider-repl "))))
+      (if repl-buffer
+	  (progn
+	    (switch-to-buffer (buffer-name repl-buffer))
+	    (setq secs 3000))
+	(progn
+	  (sleep-for 1)
+	  (setq secs (1+ secs)))))))
+
+
+
+;; (run-at-time 1 1 )
 
 ;; ------------
 

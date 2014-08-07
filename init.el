@@ -46,13 +46,17 @@
 (defun init--install-packages ()
   (packages-install
    '(anything
+     auto-dim-other-buffers
 ;     anything-config
 ;     anything-git
      cider
-     cider-tracing
+;     cider-trace
      clojure-mode
+     company
+     gh
      gist
      git-commit-mode
+     git-rebase-mode
      guide-key
      highlight-parentheses
      highlight-symbol
@@ -154,6 +158,11 @@
 ;; Enable minor-modes for clojure-mode, and setup Clojurescript
 (add-to-list 'auto-mode-alist        '("\\.cljs$" . clojure-mode))
 (add-to-list 'auto-mode-alist        '("\\.edn$"  . clojure-mode))
+
+
+;; ------------------------------------------------------------
+;; Enable company-mode in all buffer
+(add-hook 'after-init-hook 'global-company-mode)
 
 
 ;; Setup my key bindings

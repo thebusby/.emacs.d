@@ -72,7 +72,7 @@ Ignores CHAR at point."
 ;; (defalias 'cji 'clojure-jack-in)
 ;; (defalias 'cji 'nrepl-ritz-jack-in)
 ;; (defalias 'cji 'nrepl-jack-in)
-(defalias 'cji 'cider-jack-in)
+(defalias 'cji 'my-cider-jack-in)
 (defalias 'vtt 'visit-tags-table)
 (defalias 'rof 'recentf-open-files)
 ;; (defalias 'sro 'sr-speedbar-toggle)
