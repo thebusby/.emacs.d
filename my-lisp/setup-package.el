@@ -13,12 +13,18 @@
 
 ;; MELPA
 (add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/"))
+
+;; MELPA STABLE
+(add-to-list 'package-archives
              '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/"))
+
 
 (package-initialize)
 
 (unless (file-exists-p "~/.emacs.d/elpa/archives/melpa")
   (package-refresh-contents))
+
 
 ;; Taken from https://github.com/magnars/dash.el/blob/master/dash.el
 (defmacro !cdr (list)

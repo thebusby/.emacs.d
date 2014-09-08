@@ -43,13 +43,16 @@
 ;; Install packages
 (require 'setup-package)
 
+;; Manually install cider as we want to stick to a specific version
+
+
 (defun init--install-packages ()
   (packages-install
    '(anything
-;     auto-dim-other-buffers ;; Not available in mepla-stable :(
+     auto-dim-other-buffers
 ;     anything-config
 ;     anything-git
-     cider
+;     cider ;; cider should not be autoinstalled as it'll pull a snapshot from MELPA and not MELPA stable.
 ;     cider-trace
      clojure-mode
      company
