@@ -46,7 +46,7 @@
 (defun init--install-packages ()
   (packages-install
    '(anything
-     auto-dim-other-buffers
+;     auto-dim-other-buffers ;; Not available in mepla-stable :(
 ;     anything-config
 ;     anything-git
      cider
