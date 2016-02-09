@@ -69,6 +69,7 @@
      popwin
      xclip
      auto-dim-other-buffers
+     cuda-mode
 ;     move-text
 ;     htmlize
 ;     visual-regexp
