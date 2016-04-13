@@ -70,6 +70,7 @@
      xclip
      auto-dim-other-buffers
      cuda-mode
+     racer
 ;     move-text
 ;     htmlize
 ;     visual-regexp
