@@ -127,6 +127,7 @@
 
 ;; Setup language/tool specific extensions
 (eval-after-load 'clojure-mode '(require 'setup-clojure-mode))
+(eval-after-load 'racer '(require 'setup-racer))
 ; (eval-after-load 'ruby-mode    '(require 'setup-ruby-mode))
 
 
