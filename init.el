@@ -71,6 +71,7 @@
      auto-dim-other-buffers
      cuda-mode
      racer
+     markdown-mode
 ;     move-text
 ;     htmlize
 ;     visual-regexp
