@@ -52,6 +52,21 @@ Ignores CHAR at point."
 
 (global-set-key (kbd "C-n") 'zap-up-to-char)
 
+(defun copy-mode-hackery ()
+  "Remove everything in the file except is what is in the region, then save and quit"
+  (interactive)
+  (progn
+    (kill-region 1 2 3)
+    (beginning-of-buffer)
+    (yank)
+    (set-mark (point)) ;; (set-mark-command)
+    (end-of-buffer)
+    (kill-region 1 2 3)
+    (save-buffer)
+    (save-buffers-kill-terminal)))
+
+(global-set-key "\C-c\C-z" 'copy-mode-hackery)
+
 ;; ------------------------------------------------------------
 ;; Command aliases because I'm a lazy typist...
 (defalias 'qr  'query-replace)

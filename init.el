@@ -1,8 +1,18 @@
+;; Eliminated the delay when opening in an TERM, where TERM=xterm
+(setq xterm-query-timeout nil)
+
 ;; -- --  -- --  -- --  -- --  -- --  -- --  -- --  -- --  -- -
 ;; In case you need to debug the config file...
 ; (setq debug-on-error t) ;; windmove complains :(
 
 ;; Set up load path
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (setq my-lisp-dir
       (expand-file-name "my-lisp" user-emacs-directory))
 (add-to-list 'load-path my-lisp-dir)
@@ -55,11 +65,11 @@
 ;     cider ;; cider should not be autoinstalled as it'll pull a snapshot from MELPA and not MELPA stable.
 ;     cider-trace
      clojure-mode
-     company
+;     company
      gh
      gist
-     git-commit-mode
-     git-rebase-mode
+;     git-commit-mode
+;     git-rebase-mode
      guide-key
      highlight-parentheses
      highlight-symbol
@@ -69,8 +79,9 @@
      popwin
      xclip
      auto-dim-other-buffers
-     cuda-mode
+;     cuda-mode
      racer
+     rust-mode
      markdown-mode
 ;     move-text
 ;     htmlize
@@ -169,8 +180,22 @@
 
 ;; ------------------------------------------------------------
 ;; Enable company-mode in all buffer
-(add-hook 'after-init-hook 'global-company-mode)
+; (add-hook 'after-init-hook 'global-company-mode)
 
 
 ;; Setup my key bindings
 (require 'key-bindings)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (slack markdown-mode racer xclip paredit magit highlight-symbol highlight-parentheses guide-key gist clojure-mode auto-dim-other-buffers anything))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(auto-dim-other-buffers-face ((t (:background "color-80")))))
