@@ -41,13 +41,6 @@
 ;  (blink-cursor-mode -1)
   )
 
-;; Some crazy experiment
-; (lambda ()
-;   (push '("<=" . ?≤) prettify-symbols-alist)
-;   (push '("fn" . 955) prettify-symbols-alist)
-;   (push '("defn" . "defλ") prettify-symbols-alist)
-;   )
-
 ;; ;; Unclutter the modeline
 ;; (require 'diminish)
 ;; (eval-after-load "yasnippet" '(diminish 'yas-minor-mode))

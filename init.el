@@ -58,15 +58,16 @@
 
 (defun init--install-packages ()
   (packages-install
-   '(anything
+   '(
+;     anything
      auto-dim-other-buffers
 ;     anything-config
 ;     anything-git
-;     cider ;; cider should not be autoinstalled as it'll pull a snapshot from MELPA and not MELPA stable.
+     cider
 ;     cider-trace
      clojure-mode
 ;     company
-     gh
+;     gh
      gist
 ;     git-commit-mode
 ;     git-rebase-mode
@@ -78,9 +79,8 @@
      paredit
      popwin
      xclip
-     auto-dim-other-buffers
 ;     cuda-mode
-     racer
+     racer ;; Code compleetion for rust
      rust-mode
      markdown-mode
 ;     move-text
@@ -113,8 +113,9 @@
 
 
 ;; guide-key
+;; Pop up a guide at the bottom of the screen listing following commands
 (require 'guide-key)
-(setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-x v" "C-x 8" "C-x +"))
+(setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-x v" "C-x 8" "C-x +" "C-c C-t"))
 (guide-key-mode 1)
 (setq guide-key/recursive-key-sequence-flag t)
 (setq guide-key/popup-window-position 'bottom)
@@ -185,14 +186,38 @@
 
 ;; Setup my key bindings
 (require 'key-bindings)
+
+
+;; Handle package
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(package-archives
+   (quote
+    (("melpa-stable" . "https://melpa-stable.milkbox.net/packages/")
+     ("melpa" . "https://melpa.milkbox.net/packages/")
+     ("gnu" . "http://elpa.gnu.org/packages/"))))
+
  '(package-selected-packages
    (quote
-    (slack markdown-mode racer xclip paredit magit highlight-symbol highlight-parentheses guide-key gist clojure-mode auto-dim-other-buffers anything))))
+    (cider
+     goto-chg
+     ;; evil evil-tutor ;; Can use, but not for general install?
+     markdown-mode
+     racer
+     xclip
+     paredit
+     magit
+     highlight-symbol
+     highlight-parentheses
+     guide-key
+     gist
+     clojure-mode
+     auto-dim-other-buffers
+     ))))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

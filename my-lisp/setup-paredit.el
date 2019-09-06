@@ -2,6 +2,10 @@
 (require 'highlight-parentheses)
 ;; (require 'highlight-symbol)
 
+;; ; ;; ; ;; ; ;; ; ;; ; ;; ; ;; ; ;; ; ;; ; ;; ; ;; ; ;; ;
+;;          ENABLE FOR VARIOUS MODES
+;; ; ;; ; ;; ; ;; ; ;; ; ;; ; ;; ; ;; ; ;; ; ;; ; ;; ; ;; ;
+
 (add-hook 'clojure-mode-hook '(lambda ()
 				(paredit-mode 1)
 				(highlight-parentheses-mode)
@@ -19,5 +23,13 @@
 				   (highlight-parentheses-mode)
 				   ;; (highlight-symbol-mode)
 				   ))
+
+
+;; ; ;; ; ;; ; ;; ; ;; ; ;; ; ;; ; ;; ; ;; ; ;; ; ;; ; ;; ;
+;;          KEYBINDS FOR THIS MODE
+;; ; ;; ; ;; ; ;; ; ;; ; ;; ; ;; ; ;; ; ;; ; ;; ; ;; ; ;; ;
+
+;; ...
+
 
 (provide 'setup-paredit)

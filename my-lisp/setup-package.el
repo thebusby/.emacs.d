@@ -13,12 +13,11 @@
 
 ;; MELPA
 (add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/"))
+             '("melpa" . "https://melpa.milkbox.net/packages/"))
 
 ;; MELPA STABLE
 (add-to-list 'package-archives
-             '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/"))
-
+             '("melpa-stable" . "https://melpa-stable.milkbox.net/packages/"))
 
 (package-initialize)
 
