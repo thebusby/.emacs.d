@@ -56,11 +56,48 @@
 ;; ; ;; ; ;; ; ;; ; ;; ; ;; ; ;; ; ;; ; ;; ;
 
 ;; Some crazy text experiment
-(add-hook 'clojure-mode-hook
-	  (lambda ()
-	    (push '("fn" . 955) prettify-symbols-alist)
-	    (push '("defn" . "defλ") prettify-symbols-alist)
-	    ))
+;; (add-hook 'clojure-mode-hook
+;; 	  (lambda ()
+;; 	    (push '("fn" . 955) prettify-symbols-alist)
+;; 	    (push '("->" . 10549) prettify-symbols-alist)
+;; 	    (push '("->>" . ) prettify-symbols-alist)
+;; 	    (push '("defn" . "defλ") prettify-symbols-alist)
+	    
+;; 	    ))
+
+;; (add-hook
+;;  'clojure-mode-hook
+;;  (lambda ()
+;;    (mapc (lambda (pair) (push pair prettify-symbols-alist))
+;;          '(;; Syntax
+;;            ("defn" .      #x2131)
+;; 	   ("str" .      #x1d54a)
+;; 	   ("true" .     #x1d54b)
+;;            ("false" .    #x1d53d)
+
+;;            ("set" .      #x2126)
+	   
+;;            ("not" .      #x2757)
+;;            ("in" .       #x2208)
+;;            ("not in" .   #x2209)
+;;            ("return" .   #x27fc)
+;;            ("yield" .    #x27fb)
+;;            ("for" .      #x2200)
+;;            ;; Base Types
+
+;;            ;; Mypy
+;;            ("Dict" .     #x1d507)
+;;            ("List" .     #x2112)
+;;            ("Tuple" .    #x2a02)
+
+;;            ("Iterable" . #x1d50a)
+;;            ("Any" .      #x2754)
+;;            ("clojure.set/union" .    #x22c3)
+;; 	   ))))
+
+;; (set )
+
+
 ;; (add-hook 'clojure-mode-hook 'prettify-symbols-mode)
 
 ;; REPL Configuration
