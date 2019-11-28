@@ -11,6 +11,7 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (setq package-check-signature nil)
 (require 'package)
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
@@ -24,8 +25,8 @@ There are two things you can do about this warning:
 1. Install an Emacs version that does support SSL and be safe.
 2. Remove this warning from your init file so you won't see it again."))
   ;; Comment/uncomment these two lines to enable/disable MELPA and MELPA Stable as desired
-  (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
-  ;;(add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
+  ;; (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
+  (add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
   (when (< emacs-major-version 24)
     ;; For important compatibility libraries like cl-lib
     (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))))
@@ -79,10 +80,6 @@ There are two things you can do about this warning:
   (packages-install
    '(
      auto-dim-other-buffers
-;     anything-config
-;     anything-git
-     cider
-;     cider-trace
      cider
      clojure-mode
 ;     company
@@ -218,24 +215,9 @@ There are two things you can do about this warning:
     (("melpa-stable" . "https://melpa-stable.milkbox.net/packages/")
      ("melpa" . "https://melpa.milkbox.net/packages/")
      ("gnu" . "http://elpa.gnu.org/packages/"))))
-
  '(package-selected-packages
    (quote
-    (cider
-     goto-chg
-     ;; evil evil-tutor ;; Can use, but not for general install?
-     markdown-mode
-     racer
-     xclip
-     paredit
-     magit
-     highlight-symbol
-     highlight-parentheses
-     guide-key
-     gist
-     clojure-mode
-     auto-dim-other-buffers
-     ))))
+    (cider goto-chg markdown-mode racer xclip paredit magit highlight-symbol highlight-parentheses guide-key gist clojure-mode auto-dim-other-buffers))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
