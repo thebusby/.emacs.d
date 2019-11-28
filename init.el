@@ -58,12 +58,13 @@
 
 (defun init--install-packages ()
   (packages-install
-   '(anything
+   '(
      auto-dim-other-buffers
 ;     anything-config
 ;     anything-git
 ;     cider ;; cider should not be autoinstalled as it'll pull a snapshot from MELPA and not MELPA stable.
 ;     cider-trace
+     cider
      clojure-mode
 ;     company
      gh
@@ -135,7 +136,7 @@
 (require 'setup-paredit)
 (require 'setup-popwin)
 (require 'setup-mutt)
-(require 'setup-anything)
+; (require 'setup-anything)
 
 ;; Setup language/tool specific extensions
 (eval-after-load 'clojure-mode '(require 'setup-clojure-mode))
@@ -192,7 +193,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (slack markdown-mode racer xclip paredit magit highlight-symbol highlight-parentheses guide-key gist clojure-mode auto-dim-other-buffers anything))))
+    (god-mode company slack markdown-mode racer xclip paredit magit highlight-symbol highlight-parentheses guide-key gist clojure-mode auto-dim-other-buffers))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

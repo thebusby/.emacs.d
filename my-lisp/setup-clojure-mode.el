@@ -37,8 +37,7 @@
 
 (require 'cider)
 
-(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)                      ; Per the github README's recommendation
-
+(add-hook 'cider-mode-hook 'eldoc-mode)                      ; Per the github README's recommendation
 
 (setq cider-repl-use-pretty-printing t)                                    ; Enable pretty printing in REPL by default
 (setq cider-repl-print-length 100) ;; limit number of lines to print for a result...
@@ -70,12 +69,15 @@
 (setq cider-auto-select-error-buffer t)
 
 ;; Prevent the auto-display of the REPL buffer in a separate window after connection is established
-(setq cider-repl-pop-to-buffer-on-connect nil)
+;; (setq cider-repl-pop-to-buffer-on-connect nil)
+;; (setq cider-repl-pop-to-buffer-on-connect t)
+(setq cider-repl-pop-to-buffer-on-connect 'display-only)
+
 
 ;; Use C-g to kill the cider error buffer
-(add-hook 'cider-popup-buffer-mode-hook
-	  '(lambda ()
-	     (local-set-key "\C-g" 'cider-popup-buffer-quit)))
+;; (add-hook 'cider-popup-buffer-mode-hook
+;; 	  '(lambda ()
+;; 	     (local-set-key "\C-g" 'cider-popup-buffer-quit)))
 
 ;; Cycle between () {} []
 
@@ -125,29 +127,63 @@
 ;; (define-key clojure-mode-map (kbd "C-c C-z") 'nrepl-warn-when-not-connected)
 ;; (define-key clojure-mode-map (kbd "C-c C-n") 'nrepl-warn-when-not-connected)
 
+(defun my-cider-insert-defun-in-repl (&optional arg)
+  "Does cider-insert-defun-in-repl, but ignores (comment ...) if that's the top-level"
+  (interactive "P")
+  (if (clojure-top-level-form-p "comment")
+      (let ((my-initial-position (point))
+	    (start-pos (condition-case nil ;; Swiped from clojure-mode.el's clojure-beginning-of-defun-function
+			   (save-match-data
+			     (let ((original-position (point))
+				   clojure-comment-start clojure-comment-end)
+			       (beginning-of-defun)
+			       (setq clojure-comment-start (point))
+			       (end-of-defun)
+			       (setq clojure-comment-end (point))
+			       (beginning-of-defun)
+			       (forward-char 1) ;; skip paren so we start at comment
+			       (clojure-forward-logical-sexp) ;; skip past the comment form itself
+			       (if-let ((sexp-start (clojure-find-first (lambda (beg-pos)
+									  (< beg-pos original-position))
+									(clojure-sexp-starts-until-position
+									 clojure-comment-end))))
+				   sexp-start
+				 (progn (goto-char sexp-start) t)
+				 (beginning-of-defun n))))
+			 (scan-error (beginning-of-defun n)))))
+	(goto-char start-pos)
+	(clojure-forward-logical-sexp) ;; skip past the comment form itself
+	(let ((last-sexp-val (cider-last-sexp)))
+	  (goto-char my-initial-position)
+	  (cider-insert-in-repl last-sexp-val nil)))
+    (cider-insert-defun-in-repl)))
 
-(defun get-buffers-by-regex (regex)
-  "Return list of buffers who's name matched the provided regex"
-  (delq nil (mapcar (lambda (x) (if (string-match regex (buffer-name x))
-				    x))
-		    (buffer-list))))
+;; Now make this my favorite key
+(define-key cider-mode-map (kbd "C-c C-c") 'my-cider-insert-defun-in-repl)
+
+
+;; (defun get-buffers-by-regex (regex)
+;;   "Return list of buffers who's name matched the provided regex"
+;;   (delq nil (mapcar (lambda (x) (if (string-match regex (buffer-name x))
+;; 				    x))
+;; 		    (buffer-list))))
 
 
 ;; Execute cider-jack-in, and when it's complete make the REPL buffer the current buffer
-(defun my-cider-jack-in ()
-  (interactive)
-  (cider-jack-in)
-  (sleep-for 3)
-  (setq secs 3)
-  (while (< secs 30)
-    (let ((repl-buffer (car (get-buffers-by-regex "^*cider-repl "))))
-      (if repl-buffer
-	  (progn
-	    (switch-to-buffer (buffer-name repl-buffer))
-	    (setq secs 3000))
-	(progn
-	  (sleep-for 1)
-	  (setq secs (1+ secs)))))))
+;; (defun my-cider-jack-in ()
+;;   (interactive)
+;;   (cider-jack-in)
+;;   (sleep-for 3)
+;;   (setq secs 3)
+;;   (while (< secs 30)
+;;     (let ((repl-buffer (car (get-buffers-by-regex "^*cider-repl "))))
+;;       (if repl-buffer
+;; 	  (progn
+;; 	    (switch-to-buffer (buffer-name repl-buffer))
+;; 	    (setq secs 3000))
+;; 	(progn
+;; 	  (sleep-for 1)
+;; 	  (setq secs (1+ secs)))))))
 
 
 

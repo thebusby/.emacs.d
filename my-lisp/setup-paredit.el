@@ -20,4 +20,7 @@
 				   ;; (highlight-symbol-mode)
 				   ))
 
+;; Use superword mode whenever we use paredit
+(add-hook 'paredit-mode-hook 'superword-mode)
+
 (provide 'setup-paredit)
