@@ -1,6 +1,6 @@
 ;; ------------------------------------------------------------
 ;; Package management support
-(require 'package)
+; (require 'package)
 
 
 ;; Add the original Emacs Lisp Package Archive
@@ -12,15 +12,14 @@
 ;              '("marmalade" . "http://marmalade-repo.org/packages/"))
 
 ;; MELPA
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/"))
+; (add-to-list 'package-archives
+;              '("melpa" . "https://melpa.milkbox.net/packages/"))
 
 ;; MELPA STABLE
-(add-to-list 'package-archives
-             '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/"))
+; (add-to-list 'package-archives
+;              '("melpa-stable" . "https://melpa-stable.milkbox.net/packages/"))
 
-
-(package-initialize)
+; (package-initialize)
 
 (unless (file-exists-p "~/.emacs.d/elpa/archives/melpa")
   (package-refresh-contents))

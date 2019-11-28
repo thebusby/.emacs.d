@@ -41,13 +41,6 @@
 ;  (blink-cursor-mode -1)
   )
 
-;; Some crazy experiment
-; (lambda ()
-;   (push '("<=" . ?≤) prettify-symbols-alist)
-;   (push '("fn" . 955) prettify-symbols-alist)
-;   (push '("defn" . "defλ") prettify-symbols-alist)
-;   )
-
 ;; ;; Unclutter the modeline
 ;; (require 'diminish)
 ;; (eval-after-load "yasnippet" '(diminish 'yas-minor-mode))
@@ -61,11 +54,23 @@
 ;; (eval-after-load "smartparens" '(diminish 'smartparens-mode))
 ;; (eval-after-load "guide-key" '(diminish 'guide-key-mode))
 
+
 (defmacro rename-modeline (package-name mode new-name)
   `(eval-after-load ,package-name
      '(defadvice ,mode (after rename-modeline activate)
 	(setq mode-name ,new-name))))
 
+;; Rename Modelines
 (rename-modeline "clojure-mode" clojure-mode "Clj")
+
+
+;; ; ;; ; ;; ; ;; ; ;; ; ;; ; ;; ; ;; ; ;; ;
+;;              PRETTIFY
+;; ; ;; ; ;; ; ;; ; ;; ; ;; ; ;; ; ;; ; ;; ;
+
+;; Unprettify a symbol if the cursor is over it.
+(setq prettify-symbols-unprettify-at-point t)
+(setq prettify-symbols-unprettify-at-point 'right-edge)
+
 
 (provide 'appearance)

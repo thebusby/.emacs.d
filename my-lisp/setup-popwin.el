@@ -2,7 +2,6 @@
 ;; Popwin, so you don't have to permanently split buffers...
 (require 'popwin)
 (popwin-mode t)
-;; (popwin-mode 1)
 
 (setq display-buffer-function 'popwin:display-buffer)
 
@@ -37,24 +36,5 @@
         ("*Kill Ring*" :height 30)
         ("*Compile-Log*" :height 30 :stick t)
         ("*git-gutter:diff*" :height 30 :stick t)))
-
-;; (when (require 'popwin)
-;;   (setq display-buffer-function 'popwin:display-buffer)
-;;   (setq popwin:popup-window-height 0.4)
-;;   (setq anything-samewindow nil)
-;;   (push '("*anything*" :height 20) popwin:special-display-config)
-;;   (push '(dired-mode :position top) popwin:special-display-config)
-;;   ;; (push '("anything" :regexp t :height 0.5) popwin:special-display-config)
-;;   ;; (push '("*anything*" :height 20) popwin:special-display-config)
-;;   (push '("*magit-edit-log*" :height 0.5) popwin:special-display-config)
-;;   (push '("*nrepl-doc*" :height 0.5 :stick t) popwin:special-display-config)
-;;   (push '("*nrepl-src*" :height 0.5 :stick t) popwin:special-display-config)
-;;   (push '("*nrepl-error*" :height 0.5 :stick t) popwin:special-display-config))
-
-;; Override the nrepl code so that it uses popwin
-;; (defun nrepl-popup-buffer-display (popup-buffer &optional select)
-;;   "Display POPUP-BUFFER.
-;;    If SELECT is non-nil, select the newly created window"
-;;   (popwin:popup-buffer popup-buffer))
 
 (provide 'setup-popwin)

@@ -11,7 +11,26 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
+(setq package-check-signature nil)
+(require 'package)
+(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+                    (not (gnutls-available-p))))
+       (proto (if no-ssl "http" "https")))
+  (when no-ssl
+    (warn "\
+Your version of Emacs does not support SSL connections,
+which is unsafe because it allows man-in-the-middle attacks.
+There are two things you can do about this warning:
+1. Install an Emacs version that does support SSL and be safe.
+2. Remove this warning from your init file so you won't see it again."))
+  ;; Comment/uncomment these two lines to enable/disable MELPA and MELPA Stable as desired
+  (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
+  ;;(add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
+  (when (< emacs-major-version 24)
+    ;; For important compatibility libraries like cl-lib
+    (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))))
 (package-initialize)
+
 
 (setq my-lisp-dir
       (expand-file-name "my-lisp" user-emacs-directory))
@@ -62,12 +81,12 @@
      auto-dim-other-buffers
 ;     anything-config
 ;     anything-git
-;     cider ;; cider should not be autoinstalled as it'll pull a snapshot from MELPA and not MELPA stable.
+     cider
 ;     cider-trace
      cider
      clojure-mode
 ;     company
-     gh
+;     gh
      gist
 ;     git-commit-mode
 ;     git-rebase-mode
@@ -79,9 +98,8 @@
      paredit
      popwin
      xclip
-     auto-dim-other-buffers
 ;     cuda-mode
-     racer
+     racer ;; Code compleetion for rust
      rust-mode
      markdown-mode
 ;     move-text
@@ -114,8 +132,9 @@
 
 
 ;; guide-key
+;; Pop up a guide at the bottom of the screen listing following commands
 (require 'guide-key)
-(setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-x v" "C-x 8" "C-x +"))
+(setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-x v" "C-x 8" "C-x +" "C-c C-t"))
 (guide-key-mode 1)
 (setq guide-key/recursive-key-sequence-flag t)
 (setq guide-key/popup-window-position 'bottom)
@@ -186,14 +205,38 @@
 
 ;; Setup my key bindings
 (require 'key-bindings)
+
+
+;; Handle package
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(package-archives
+   (quote
+    (("melpa-stable" . "https://melpa-stable.milkbox.net/packages/")
+     ("melpa" . "https://melpa.milkbox.net/packages/")
+     ("gnu" . "http://elpa.gnu.org/packages/"))))
+
  '(package-selected-packages
    (quote
-    (god-mode company slack markdown-mode racer xclip paredit magit highlight-symbol highlight-parentheses guide-key gist clojure-mode auto-dim-other-buffers))))
+    (cider
+     goto-chg
+     ;; evil evil-tutor ;; Can use, but not for general install?
+     markdown-mode
+     racer
+     xclip
+     paredit
+     magit
+     highlight-symbol
+     highlight-parentheses
+     guide-key
+     gist
+     clojure-mode
+     auto-dim-other-buffers
+     ))))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
