@@ -83,6 +83,7 @@ There are two things you can do about this warning:
      cider
      clojure-mode
 ;     company
+     evil
 ;     gh
      gist
 ;     git-commit-mode
@@ -217,7 +218,7 @@ There are two things you can do about this warning:
      ("gnu" . "http://elpa.gnu.org/packages/"))))
  '(package-selected-packages
    (quote
-    (cider goto-chg markdown-mode racer xclip paredit magit highlight-symbol highlight-parentheses guide-key gist clojure-mode auto-dim-other-buffers))))
+    (evil undo-tree cider goto-chg markdown-mode racer xclip paredit magit highlight-symbol highlight-parentheses guide-key gist clojure-mode auto-dim-other-buffers))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
